@@ -1,0 +1,137 @@
+
+sudo apt update
+sudo apt upgrade -y
+sudo apt install snapd wget curl python3-pip git virtualenv gnome-tweaks
+
+
+
+#Switching language by Alt + Shift 
+#1
+gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Shift>Alt_L']"
+#2 open gnome-tweaks->Keyboard and Mouse ->Additional Layout ->
+					Switching to another layout -> Alt+Shift =True
+
+
+#install boot-repair
+sudo add-apt-repository ppa:yannubuntu/boot-repair
+sudo apt-get install boot-repair
+
+#install grub-customizer
+sudo add-apt-repository ppa:trebelnik-stefina/grub-customizer
+sudo apt update
+sudo apt install grub-customizer
+
+
+
+
+#install snap programs
+#if KALI LINUX:
+	sudo apt install snapd
+	sudo systemctl start snapd.service
+	sudo systemctl enable snapd.service
+	sudo systemctl start snapd.apparmor
+	sudo systemctl enable snapd.apparmor
+sudo snap install telegram-desktop
+sudo snap install vlc
+
+
+##install anaconda in Custom code 
+sudo apt-get install xclip
+sudo apt install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6
+wget -P /tmp https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
+bash /tmp/Anaconda3-2020.02-Linux-x86_64.sh
+source ~/.bashrc
+conda update --all
+
+
+
+#install chrome in official linux
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome-stable_current_amd64.deb
+
+
+
+
+
+
+##install Tor in flatpak
+sudo apt install flatpak
+sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+sudo flatpak install flathub com.github.micahflee.torbrowser-launcher
+flatpak run com.github.micahflee.torbrowser-launcher
+
+
+
+#install sqlitebrowser
+sudo apt install sqlitebrowser
+sqlitebrowser
+
+
+
+
+
+#problems with kept back
+sudo apt-get --with-new-pkgs upgrade <list of packages kept back>
+sudo apt dist-upgrade
+
+
+
+
+#REC videos
+
+sudo apt-get install  kazam
+sudo nano /etc/gdm3/custom.conf
+
+       ||||#WaylandEnable=false|||| 
+       		switch to
+       			 WaylandEnable=false 
+       
+
+
+
+
+
+
+
+
+
+#download all telegram music 
+#find and delete all jpeg in music export file
+cd Music
+find . -name "*.jpg" -delete
+
+
+
+
+
+
+#instapy2.0
+#terminal size 62x55
+
+#git clone download 
+
+#create envs
+sudo apt install virtualenv
+mkdir environments
+cd environments
+virtualenv --python=python3 instapy
+cd 
+source environments/instapy/bin/activate
+
+cd instagram/black_pr_company/config/
+pip install -r requirements.txt
+cd
+cd instagram/black_pr_company/
+#cookies generate
+python3 new_cookies.py 
+
+#open application
+python3 application.py 
+
+
+
+
+
+
+
+
