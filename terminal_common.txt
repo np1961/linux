@@ -93,42 +93,8 @@ conda update --all
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 
-
-
-
-
-
-sudo mkdir --parents --mode=0755 /etc/apt/keyrings
-curl -fsSL https://repo.radeon.com/rocm/rocm.gpg.key | \
-  sudo tee /etc/apt/keyrings/rocm.asc > /dev/null
-echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.asc] \
-  https://repo.radeon.com/rocm/apt/6.2/ ubuntu main" | \
-  sudo tee /etc/apt/sources.list.d/rocm.list
-
-
-sudo apt update
-sudo apt install rocm-dev rocm-libs hip-runtime-amd
-export PATH=/opt/rocm/bin:$PATH
-export LD_LIBRARY_PATH=/opt/rocm/lib:$LD_LIBRARY_PATH
-/opt/rocm/bin/rocminfo
-/opt/rocm/bin/hipinfo
-pip install torch torchvision --index-url https://download.pytorch.org/whl/rocm6.2
-
-
-
-#local download saiga_llama3_8b
-
-pip install huggingface_hub
-
-mkdir -p ~/Documents/models/saiga_llama3_8b
-
-huggingface-cli download IlyaGusev/saiga_llama3_8b \
-    --local-dir ~/Documents/models/saiga_llama3_8b \
-    --local-dir-use-symlinks False
-
-=====================================================================================================
-
-
+#music clementine
+sudo apt update && sudo apt install -y clementine
 
 
 
@@ -178,6 +144,43 @@ sudo nano /etc/gdm3/custom.conf
 cd Music
 find . -name "*.jpg" -delete
 
+
+
+
+
+
+
+
+
+
+
+
+sudo mkdir --parents --mode=0755 /etc/apt/keyrings
+curl -fsSL https://repo.radeon.com/rocm/rocm.gpg.key | \
+  sudo tee /etc/apt/keyrings/rocm.asc > /dev/null
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.asc] \
+  https://repo.radeon.com/rocm/apt/6.2/ ubuntu main" | \
+  sudo tee /etc/apt/sources.list.d/rocm.list
+
+sudo apt update
+sudo apt install rocm-dev rocm-libs hip-runtime-amd
+export PATH=/opt/rocm/bin:$PATH
+export LD_LIBRARY_PATH=/opt/rocm/lib:$LD_LIBRARY_PATH
+/opt/rocm/bin/rocminfo
+/opt/rocm/bin/hipinfo
+pip install torch torchvision --index-url https://download.pytorch.org/whl/rocm6.2
+
+#local download saiga_llama3_8b
+
+pip install huggingface_hub
+
+mkdir -p ~/Documents/models/saiga_llama3_8b
+
+huggingface-cli download IlyaGusev/saiga_llama3_8b \
+    --local-dir ~/Documents/models/saiga_llama3_8b \
+    --local-dir-use-symlinks False
+
+=====================================================================================================
 
 
 
