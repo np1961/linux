@@ -37,6 +37,7 @@ cfg item_popup_interval 0
 cfg autocompletion false
 cfg check_selection false      # выделение мышью в историю не пишем
 cfg copy_selection false
+cfg disable_tray true          # без значка в верхней панели
 
 # 2. скрипты действий
 mkdir -p ~/.local/share/copyq-numpad ~/.local/bin
