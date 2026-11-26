@@ -14,11 +14,11 @@ cat > ~/.config/autostart/copyq-numpad.desktop <<'EOF'
 [Desktop Entry]
 Type=Application
 Name=CopyQ
-Exec=env QT_QPA_PLATFORM=xcb copyq
+Exec=env QT_QPA_PLATFORM=xcb copyq --start-server hide
 X-GNOME-Autostart-enabled=true
 EOF
 echo "autostart (XWayland)            OK"
-(QT_QPA_PLATFORM=xcb nohup copyq >/dev/null 2>&1 &)
+(QT_QPA_PLATFORM=xcb nohup copyq --start-server hide >/dev/null 2>&1 &)
 for i in $(seq 1 20); do copyq eval 1 >/dev/null 2>&1 && break; sleep 0.5; done
 copyq eval 1 >/dev/null 2>&1 || { echo "CopyQ did not start            FAIL"; exit 1; }
 echo "CopyQ started (XWayland)       OK"
@@ -38,6 +38,7 @@ cfg autocompletion false
 cfg check_selection false      # выделение мышью в историю не пишем
 cfg copy_selection false
 cfg disable_tray true          # без значка в верхней панели
+cfg hide_main_window true      # без трея «свернуть» не работает — прятать окно совсем
 
 # 2. скрипты действий
 mkdir -p ~/.local/share/copyq-numpad ~/.local/bin
