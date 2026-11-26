@@ -39,21 +39,10 @@ gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Shift>Alt
 
 
 
-#Disable Insert key
-sudo apt update && sudo apt install -y git build-essential
-cd ~ && git clone --depth 1 https://github.com/rvaiya/keyd
-cd ~/keyd && make && sudo make install
 
-sudo mkdir -p /etc/keyd
-sudo tee /etc/keyd/default.conf >/dev/null <<'EOF'
-[ids]
-*
 
-[main]
-insert = noop
-EOF
 
-sudo systemctl enable --now keyd
+
 
 
 
@@ -95,6 +84,41 @@ sudo dpkg -i google-chrome-stable_current_amd64.deb
 
 #music clementine
 sudo apt update && sudo apt install -y clementine
+
+
+
+#Disable Insert key
+sudo apt update && sudo apt install -y git build-essential
+cd ~ && git clone --depth 1 https://github.com/rvaiya/keyd
+cd ~/keyd && make && sudo make install
+sudo mkdir -p /etc/keyd
+sudo tee /etc/keyd/default.conf >/dev/null <<'EOF'
+[ids]
+*
+[main]
+insert = noop
+EOF
+sudo systemctl enable --now keyd
+
+
+
+
+
+
+#CopyQ numpad clipboard slots
+cd linux/copyq-ubuntu/
+bash install.sh && bash keyd-add.sh
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -148,39 +172,6 @@ find . -name "*.jpg" -delete
 
 
 
-
-
-
-
-
-
-
-sudo mkdir --parents --mode=0755 /etc/apt/keyrings
-curl -fsSL https://repo.radeon.com/rocm/rocm.gpg.key | \
-  sudo tee /etc/apt/keyrings/rocm.asc > /dev/null
-echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.asc] \
-  https://repo.radeon.com/rocm/apt/6.2/ ubuntu main" | \
-  sudo tee /etc/apt/sources.list.d/rocm.list
-
-sudo apt update
-sudo apt install rocm-dev rocm-libs hip-runtime-amd
-export PATH=/opt/rocm/bin:$PATH
-export LD_LIBRARY_PATH=/opt/rocm/lib:$LD_LIBRARY_PATH
-/opt/rocm/bin/rocminfo
-/opt/rocm/bin/hipinfo
-pip install torch torchvision --index-url https://download.pytorch.org/whl/rocm6.2
-
-#local download saiga_llama3_8b
-
-pip install huggingface_hub
-
-mkdir -p ~/Documents/models/saiga_llama3_8b
-
-huggingface-cli download IlyaGusev/saiga_llama3_8b \
-    --local-dir ~/Documents/models/saiga_llama3_8b \
-    --local-dir-use-symlinks False
-
-=====================================================================================================
 
 
 

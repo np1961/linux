@@ -1,0 +1,5 @@
+#!/bin/bash
+# cq ДЕЙСТВИЕ [N] — запускает действие CopyQ: preview N | paste | mark | put N | get N.
+# Его запускает keyd (command в keyd-copyq.conf) от вашего пользователя, с правых цифр.
+D="$HOME/.local/share/copyq-numpad"
+exec copyq eval "var N = ${2:-0}; $(cat "$D/common.js" "$D/$1.js")"
